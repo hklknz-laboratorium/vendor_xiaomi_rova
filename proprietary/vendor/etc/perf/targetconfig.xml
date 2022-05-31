@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
- * Copyright (c) 2017-2018 Qualcomm Technologies, Inc.
- * All Rights Reserved.
- * Confidential and Proprietary - Qualcomm Technologies, Inc.
--->
-
 <TargetConfig>
 
     <!-- All the target related information goes in TargetInfo tag.
@@ -42,47 +36,53 @@
 
     <Config1>
 
-         <TargetInfo
-             Target="msm8953"
+         <!--TargetInfo
+             Target="msm8937"
              NumClusters="2"
              TotalNumCores="8"
-             SocIds="293,304"
+             SocIds="294,295,313"
              SynCore="1"
+             CoreCtlCpu="0"
+             MinCoreOnline="0" />
+             
+         <ClustersInfo Id="0" NumCores="4" Type="big" />
+         <ClustersInfo Id="1" NumCores="4" Type="little" /-->
+         
+         <!-- Xiaomi Redmi 4A rolex / 5A riva.
+             TotalNumCores="4" because it only has 4 CPU cores.
+             NumClusters="1" because it's only using 1 cluster.
+             SocIds="" depends of /sys/devices/soc*/soc_id.
+             CoreCtlCpu="1" depends of /sys/devices/system/cpu/cpu0/core_ctl.
+             CpufreqGov="1" if using Schedutil governor.
+             CpufreqGov="0" if using Interactive governor.
+             GovInstanceType="1" because it's only using a single governor. -->
+         <TargetInfo
+             Target="msm8937"
+             NumClusters="1"
+             TotalNumCores="4"
+             SocIds="303,307,308,309,320,294,295,313"
+             SynCore="1"
+             CoreCtlCpu="1"
              MinCoreOnline="0"
+             CpufreqGov="1"
              GovInstanceType="1" />
 
-         <ClustersInfo Id="0" NumCores="4" Type="little" />
-         <ClustersInfo Id="1" NumCores="4" Type="big" />
+         <ClustersInfo Id="0" NumCores="4" Type="big" />
 
     </Config1>
 
     <Config2>
-
          <TargetInfo
-             Target="sdm450"
-             NumClusters="2"
-             TotalNumCores="8"
-             SocIds="338,351"
+             Target="msm8917"
+             NumClusters="1"
+             TotalNumCores="4"
+             SocIds="303,307,308,309,320"
              SynCore="1"
-             MinCoreOnline="0"
+             MinCoreOnline="1"
              GovInstanceType="1" />
 
-         <ClustersInfo Id="0" NumCores="4" Type="little" />
-         <ClustersInfo Id="1" NumCores="4" Type="big" />
+         <ClustersInfo Id="0" NumCores="4" Type="big" />
 
     </Config2>
-    <Config3>
 
-         <TargetInfo
-             Target="sdm632"
-             NumClusters="2"
-             TotalNumCores="8"
-             SocIds="349,350"
-             SynCore="1"
-             MinCoreOnline="0" />
-
-         <ClustersInfo Id="0" NumCores="4" Type="little" />
-         <ClustersInfo Id="1" NumCores="4" Type="big" />
-
-    </Config3>
 </TargetConfig>
